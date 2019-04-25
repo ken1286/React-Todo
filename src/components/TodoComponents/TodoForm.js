@@ -1,6 +1,5 @@
 import React from 'react';
 import './Todo.css';
-import Todo from './Todo';
 
 function TodoForm(props) {
   return (
@@ -12,6 +11,7 @@ function TodoForm(props) {
         name={props.name}
       />
       <button type="submit" onClick={props.addTodo}>Add Todo</button>
+      <button type="submit" onClick={props.clearTodos}>Clear Todos</button>
     </form>
   )
 }

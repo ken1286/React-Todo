@@ -5,9 +5,9 @@ import './Todo.css';
 function Todo(props) {
   return (
     <div>
-      <p>{props.todo}</p>
+      {props.todo.task}
     </div>
-  );
+     );
 }
 
 export default Todo;
