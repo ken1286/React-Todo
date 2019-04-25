@@ -3,7 +3,7 @@ import './Todo.css';
 
 function TodoForm(props) {
   return (
-    <form>
+    <form onSubmit={props.addTodo}>
       <input 
         placeholder="todo..." 
         value={props.value}
@@ -11,7 +11,8 @@ function TodoForm(props) {
         name={props.name}
       />
       <button type="submit" onClick={props.addTodo}>Add Todo</button>
-      <button type="submit" onClick={props.clearTodos}>Clear Todos</button>
+      <button type="submit" onClick={props.clearComplete}>Clear Completed Todos</button>
+      <button type="submit" onClick={props.clearTodos}>Clear All Todos</button>
     </form>
   )
 }

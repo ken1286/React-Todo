@@ -31,7 +31,6 @@ class App extends React.Component {
   }
 
   handleChanges = event => {
-    console.log(event.target.value);
     this.setState({
       todo: {
         ...this.state.todo,
@@ -40,7 +39,6 @@ class App extends React.Component {
         completed: false
       }
     })
-    console.log(this.state.todo.id)
   }
 
   addTodo = event => {
@@ -53,13 +51,50 @@ class App extends React.Component {
         completed: ''
       }
     })
-    console.log(event.target.id)
   };
+
+  clearComplete = event => {
+    // event.preventDefault();
+    // let checkComplete = this.state.todoOnState.filter( todo => {
+    //   if(todo.completed === false) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // })
+    // this.setState({ 
+    //   checkComplete
+    // })
+    this.setState({
+      todoOnState: this.state.todoOnState.filter( todo => {
+           if(todo.completed === false) {
+             return true;
+           } else {
+             return false;
+        }
+         })
+    })
+  }
 
   clearTodos = event => {
     event.preventDefault();
     this.setState({ todoOnState: [] });
   };
+
+  toggleTodo = id => {
+    let updateTodos = this.state.todoOnState;
+    updateTodos = updateTodos.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+        return todo;
+        }
+
+      return todo;
+    })
+    this.setState({
+      updateTodos
+    })
+  }
 
 
   render() {
@@ -67,12 +102,16 @@ class App extends React.Component {
     return (
       <div className="app-wrapper">
         <h2>Welcome to your Todo App!</h2>
-        <TodoList todos={this.state.todoOnState} />
+        <TodoList 
+          todos={this.state.todoOnState} 
+          toggleTodo={this.toggleTodo}
+        />
         <TodoForm 
           value={this.state.todo.task}
           handleChanges={this.handleChanges}
           name="task"
           addTodo={this.addTodo}
+          clearComplete={this.clearComplete}
           clearTodos={this.clearTodos}
         />
         {console.log(this.state.todoOnState)}

@@ -11,6 +11,8 @@ function TodoList(props) {
         return (
         <Todo 
           todo={todo}
+          key={todo.id}
+          toggleTodo={props.toggleTodo}
         />
         );
       })}

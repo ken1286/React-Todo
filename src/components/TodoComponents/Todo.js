@@ -3,8 +3,17 @@ import './Todo.css';
 
 
 function Todo(props) {
+  let classTodo = "todo";
+  if(props.todo.completed) {
+    classTodo += "-complete"
+  }
+
+  function updateTodo() {
+    props.toggleTodo(props.todo.id)
+  }
+
   return (
-    <div>
+    <div className={classTodo} onClick={updateTodo}>
       {props.todo.task}
     </div>
      );
